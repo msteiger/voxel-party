@@ -17,7 +17,6 @@ import nexus.model.renderable.Air;
 import nexus.model.renderable.Solid;
 import nexus.model.structs.Block;
 import nexus.model.structs.Vector3;
-import nexus.view.color.Greyscale;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -94,28 +93,28 @@ public class Controller implements Runnable {
 		
 		this.model.camera.update();
 		
-		for (float i = 0f; i < MAX_SELECT_DISTANCE; i += 0.1f) {
-			Vector3 target = model.camera.eye.add(model.camera.unitFocal.scale((float) i));
-
-			if (model.chunks.inBounds(target) && model.chunks.getBlock(target).visible()) {
-				if (target != model.chunks.selected) {
-					model.chunks.getBlock(model.chunks.selected).mask.drawOutline = false;
-					model.chunks.getBlock(target).mask.drawOutline = true;
-					model.chunks.selected = target;
-				}
-				
-				if (Mouse.isButtonDown(0)) {
-					model.chunks.setBlock(new Air(model.chunks.selected, 1.0f));
-				}
-				
-				if (Mouse.isButtonDown(1)) {
-					Block newBlock = new Solid(model.chunks.getBlock(model.chunks.selected).a.add(new Vector3(0f, 1f, 0f)), 1.0f, new Greyscale(16.0f, 0.0f));
-					model.chunks.setBlock(newBlock);
-				}
-				
-				break;
-			}
-		}
+//		for (float i = 0f; i < MAX_SELECT_DISTANCE; i += 0.1f) {
+//			Vector3 target = model.camera.eye.add(model.camera.unitFocal.scale((float) i));
+//
+//			if (model.chunks.inBounds(target) && model.chunks.getBlock(target).visible()) {
+//				if (target != model.chunks.selected) {
+//					model.chunks.getBlock(model.chunks.selected).mask.drawOutline = false;
+//					model.chunks.getBlock(target).mask.drawOutline = true;
+//					model.chunks.selected = target;
+//				}
+//				
+//				if (Mouse.isButtonDown(0)) {
+//					model.chunks.setBlock(new Air(model.chunks.selected, 1.0f));
+//				}
+//				
+//				if (Mouse.isButtonDown(1)) {
+//					Block newBlock = new Solid(model.chunks.getBlock(model.chunks.selected).a.add(new Vector3(0f, 1f, 0f)), 1.0f, new Greyscale(16.0f, 0.0f));
+//					model.chunks.setBlock(newBlock);
+//				}
+//				
+//				break;
+//			}
+//		}
 	}
 
 	/**
