@@ -89,6 +89,7 @@ public class Camera {
 	 */
 	public void forwards() {
 		this.eye = this.unitLookAt().scale(this.sensitivity).add(this.eye);
+		System.out.println(this.eye);
 	}
 	
 	/**
@@ -96,5 +97,22 @@ public class Camera {
 	 */
 	public void backwards() {
 		this.eye = this.unitLookAt().scale(-this.sensitivity).add(this.eye);
+		System.out.println(this.eye);
+	}
+
+	/**
+	 * 
+	 */
+	public void down()
+	{
+		this.eye.y -= this.sensitivity;
+	}
+
+	/**
+	 * 
+	 */
+	public void up()
+	{
+		this.eye.y += this.sensitivity;
 	}
 }

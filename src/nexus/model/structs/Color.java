@@ -9,8 +9,13 @@ package nexus.model.structs;
 
 import static org.lwjgl.opengl.GL11.glColor4f;
 
+import org.terasology.math.TeraMath;
+
 public class Color {
-	float r, g, b, a;
+	public float r;
+	public float g;
+	public float b;
+	public float a;
 	
 	/**
 	 * Contructs a Color with RBGA
@@ -21,10 +26,10 @@ public class Color {
 	 * @param a
 	 */
 	public Color(float r, float g, float b, float a) {
-		this.r = r;
-		this.g = g;
-		this.b = b;
-		this.a = a;
+		this.r = TeraMath.clamp(r, 0f, 1f);
+		this.g = TeraMath.clamp(g, 0f, 1f);
+		this.b = TeraMath.clamp(b, 0f, 1f);
+		this.a = TeraMath.clamp(a, 0f, 1f);
 	}
 	
 	/**

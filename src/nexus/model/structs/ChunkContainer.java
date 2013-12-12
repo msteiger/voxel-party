@@ -15,6 +15,7 @@ import java.util.HashMap;
 public class ChunkContainer {
 	public HashMap<Long, Chunk> chunks;
 	public Vector3 selected;
+	private CityTerrainGenerator generator;
 
 	/**
 	 * Creates an empty ChunkContainer
@@ -22,6 +23,7 @@ public class ChunkContainer {
 	public ChunkContainer() {
 		this.chunks = new HashMap<Long, Chunk>();
 		this.selected = new Vector3(0f, 0f, 0f);
+		this.generator = new CityTerrainGenerator();
 	}
 
 	/**
@@ -39,7 +41,7 @@ public class ChunkContainer {
 
 		if (chunk == null) {
 			chunk = new Chunk(x, z, new Vector3(0.2f, 20.0f, 0.2f), this);
-			chunk.generate();
+			generator.generateChunk(chunk);
 
 			if (mask) {
 				chunk.calcVisible();

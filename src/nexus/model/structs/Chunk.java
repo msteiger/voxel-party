@@ -40,29 +40,6 @@ public class Chunk {
 	}
 
 	/**
-	 * Fills the Chunk with a heightmap of 2D Perlin noise
-	 */
-	public void generate() {
-		for (int i = 0; i < WIDTH; i++) {
-			for (int j = 0; j < WIDTH; j++) {
-				Color color = new Color(0.2f, (float) (0.7f + Math.random() * 0.2f), 0.4f);
-				
-				float x = (float) this.x * Chunk.WIDTH + i;
-				float z = (float) this.z * Chunk.WIDTH + j;
-				float y = (int) dilation.y * ((Perlin.perlin2D(x * dilation.x + BIG_NUMBER, z * dilation.z + BIG_NUMBER) + 1) / 2) + 1;
-
-				for (int k = 0; k < HEIGHT; k++) {
-					if (k > y - 1 && k < y) {
-						this.blocks[i][j][k] = new Solid(new Vector3(x, k, z), 1.0f, color);
-					} else {
-						this.blocks[i][j][k] = Air.INSTANCE;	
-					}
-				}
-			}
-		}
-	}
-
-	/**
 	 * Calculates visible sides of blocks and updates each block's mask accordingly
 	 */
 	public void calcVisible() {

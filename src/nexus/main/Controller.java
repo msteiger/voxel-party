@@ -75,9 +75,14 @@ public class Controller implements Runnable {
 		int dy = 0;
 		int dx = 0;
 		
-		while (Mouse.next()) {
-			dy += Mouse.getEventDY();
-			dx += Mouse.getEventDX();
+		try {
+			while (Mouse.next()) {
+				dy += Mouse.getEventDY();
+				dx += Mouse.getEventDX();
+			}
+		}
+		catch (Exception e) {
+			return;
 		}
 
 		this.model.camera.pitch(dy * this.mouseSensitivity);
@@ -91,6 +96,13 @@ public class Controller implements Runnable {
 			this.model.camera.backwards();
 		}
 		
+		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			this.model.camera.up();
+		}
+		
+		if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
+			this.model.camera.down();
+		}
 		this.model.camera.update();
 		
 //		for (float i = 0f; i < MAX_SELECT_DISTANCE; i += 0.1f) {
