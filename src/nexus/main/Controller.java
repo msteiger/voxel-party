@@ -84,9 +84,23 @@ public class Controller implements Runnable {
 		catch (Exception e) {
 			return;
 		}
+		
+		if (model == null)
+			return;
+		
+		if (model.camera == null)
+			return;
 
 		this.model.camera.pitch(dy * this.mouseSensitivity);
 		this.model.camera.yaw(dx * this.mouseSensitivity);
+		
+		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+			this.model.camera.left();
+		}
+		
+		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			this.model.camera.right();
+		}
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.forwards();

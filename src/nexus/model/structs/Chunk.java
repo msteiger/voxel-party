@@ -23,6 +23,14 @@ public class Chunk {
 	boolean mask = false;
 	ChunkContainer parent;
 
+	int getChunkSizeX() {
+		return WIDTH;
+	}
+
+	int getChunkSizeZ() {
+		return WIDTH;
+	}
+
 	/**
 	 * Creates a new Chunk
 	 * 

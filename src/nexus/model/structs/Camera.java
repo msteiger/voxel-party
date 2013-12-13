@@ -10,7 +10,6 @@ package nexus.model.structs;
 public class Camera {
 	public Vector3 eye;
 	public Vector3 focal;
-	public Vector3 unitFocal;
 	public float pitch, yaw;
 	public boolean invert;
 	public float sensitivity;
@@ -47,7 +46,7 @@ public class Camera {
 	 * @return an absolute point that the camera should look at
 	 */
 	public Vector3 lookAt() {
-		unitFocal = unitLookAt();
+		Vector3 unitFocal = unitLookAt();
 		return new Vector3(this.eye.x + unitFocal.x, this.eye.y + unitFocal.y, this.eye.z + unitFocal.z);
 	}
 	
@@ -89,7 +88,6 @@ public class Camera {
 	 */
 	public void forwards() {
 		this.eye = this.unitLookAt().scale(this.sensitivity).add(this.eye);
-		System.out.println(this.eye);
 	}
 	
 	/**
@@ -97,7 +95,6 @@ public class Camera {
 	 */
 	public void backwards() {
 		this.eye = this.unitLookAt().scale(-this.sensitivity).add(this.eye);
-		System.out.println(this.eye);
 	}
 
 	/**
@@ -114,5 +111,32 @@ public class Camera {
 	public void up()
 	{
 		this.eye.y += this.sensitivity;
+	}
+
+	/**
+	 * 
+	 */
+	public void right()
+	{
+		double offX = - Math.sin(yaw) * sensitivity;
+		double offZ = Math.cos(yaw) * sensitivity;
+		eye.x += offX;
+		focal.x += offX;
+		eye.z += offZ;
+		focal.z += offZ;
+		
+	}
+
+	/**
+	 * 
+	 */
+	public void left()
+	{
+		double offX = Math.sin(yaw) * sensitivity;
+		double offZ = - Math.cos(yaw) * sensitivity;
+		eye.x += offX;
+		focal.x += offX;
+		eye.z += offZ;
+		focal.z += offZ;
 	}
 }
