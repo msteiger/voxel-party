@@ -31,6 +31,9 @@ public class Chunk {
 		return WIDTH;
 	}
 
+	int getChunkSizeY() {
+		return HEIGHT;
+	}
 	/**
 	 * Creates a new Chunk
 	 * 
