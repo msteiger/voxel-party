@@ -14,24 +14,25 @@ import nexus.model.renderable.Solid;
 public class Chunk {
 	// this value should not need to be changed
 	public static final int WIDTH = 16;
-	public static final int HEIGHT = 16;
+	public static final int HEIGHT = 24;
 	public static final int BIG_NUMBER = (int) Math.pow(2, 18);
 
-	int x, z;
+	public int x;
+	public  int z;
 	Vector3 dilation;
 	public Block[][][] blocks;
 	boolean mask = false;
 	ChunkContainer parent;
 
-	int getChunkSizeX() {
+	public int getChunkSizeX() {
 		return WIDTH;
 	}
 
-	int getChunkSizeZ() {
+	public int getChunkSizeZ() {
 		return WIDTH;
 	}
 
-	int getChunkSizeY() {
+	public int getChunkSizeY() {
 		return HEIGHT;
 	}
 	/**

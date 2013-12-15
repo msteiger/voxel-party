@@ -19,9 +19,6 @@ package nexus.model.structs;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.terasology.engine.CoreRegistry;
 import org.terasology.world.generator.city.BlockTypes;
 
 import com.google.common.base.Function;
@@ -33,15 +30,14 @@ import com.google.common.collect.Maps;
  */
 final class BlockColorFunction implements Function<String, Color> {
 
-    private static final Logger logger = LoggerFactory.getLogger(BlockColorFunction.class);
-
-    private final Map<String, Color> map = Maps.newConcurrentMap();
-    private final Color defaultColor = new Color(0.3f, 0.3f, 0.3f);
+    private final Map<String, Color> map = Maps.newHashMap();
 
     /**
      * Setup the mapping with defaults 
      */
     public BlockColorFunction() {
+        map.put(BlockTypes.AIR, null);
+        
         map.put(BlockTypes.ROAD_SURFACE, new Color(0.4f, 0.4f, 0.4f));
         map.put(BlockTypes.LOT_EMPTY, new Color(0.9f, 0.9f, 0.5f));
         map.put(BlockTypes.BUILDING_WALL, new Color(0.7f, 0.7f, 0.7f));
@@ -61,11 +57,6 @@ final class BlockColorFunction implements Function<String, Color> {
     public Color apply(String input) {
 
     	Color block = map.get(input);
-
-        if (block == null) {
-            block = defaultColor;
-            logger.warn("Could not resolve block type \"{}\" - using default", input);
-        }
 
         return block;
     }
