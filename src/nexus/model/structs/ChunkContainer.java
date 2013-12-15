@@ -88,7 +88,7 @@ public class ChunkContainer {
 	 * @param block
 	 */
 	public void setBlock(Block block) {
-		if (inBounds(block.a) && inBounds(block.b) && block.isOnGrid()) {
+		if (inBounds(block.a) && inBounds(block.b)) {
 			this.getChunk(block.a).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
 
 			if (!block.visible()) {

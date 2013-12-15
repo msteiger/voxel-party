@@ -1,6 +1,9 @@
 package nexus.model.structs;
 
-import nexus.model.generators.Perlin;
+import org.terasology.math.Vector3i;
+import org.terasology.world.chunks.ChunkConstants;
+import org.terasology.world.liquid.LiquidData;
+
 import nexus.model.renderable.Air;
 import nexus.model.renderable.Solid;
 
@@ -11,12 +14,13 @@ import nexus.model.renderable.Solid;
  *
  */
 
-public class Chunk {
+public class Chunk implements org.terasology.world.chunks.Chunk {
 	// this value should not need to be changed
 	public static final int WIDTH = 16;
 	public static final int HEIGHT = 24;
 	public static final int BIG_NUMBER = (int) Math.pow(2, 18);
 
+	public int y;
 	public int x;
 	public  int z;
 	Vector3 dilation;
@@ -151,4 +155,112 @@ public class Chunk {
 			}
 		}
 	}
+
+	@Override
+	public Vector3i getPos()
+	{
+		return new Vector3i(x, y, z);
+	}
+
+	@Override
+	public org.terasology.world.block.Block getBlock(Vector3i pos)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public org.terasology.world.block.Block getBlock(int x, int y, int z)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public org.terasology.world.block.Block setBlock(int x, int y, int z, org.terasology.world.block.Block block)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public org.terasology.world.block.Block setBlock(Vector3i pos, org.terasology.world.block.Block block)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setLiquid(Vector3i pos, LiquidData state)
+	{
+		setLiquid(x, y, z, state);
+	}
+
+	@Override
+	public void setLiquid(int x, int y, int z, LiquidData newState)
+	{
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public LiquidData getLiquid(Vector3i pos)
+	{
+		return getLiquid(pos.x, pos.y, pos.z);
+	}
+
+	@Override
+	public LiquidData getLiquid(int x, int y, int z)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector3i getChunkWorldPos()
+	{
+		return new Vector3i(getChunkWorldPosX(), getChunkWorldPosY(), getChunkWorldPosZ());
+	}
+
+    @Override
+    public int getChunkWorldPosX() {
+        return x * getChunkSizeX();
+    }
+
+    @Override
+    public int getChunkWorldPosY() {
+        return y * getChunkSizeY();
+    }
+
+    @Override
+    public int getChunkWorldPosZ() {
+        return z * getChunkSizeZ();
+    }
+
+	@Override
+	public Vector3i getBlockWorldPos(Vector3i blockPos)
+	{
+        return getBlockWorldPos(blockPos.x, blockPos.y, blockPos.z);
+	}
+
+	@Override
+	public Vector3i getBlockWorldPos(int x, int y, int z)
+	{
+        return new Vector3i(getBlockWorldPosX(x), getBlockWorldPosY(y), getBlockWorldPosZ(z));
+	}
+
+    @Override
+    public int getBlockWorldPosX(int x) {
+        return x + getChunkWorldPosX();
+    }
+
+    @Override
+    public int getBlockWorldPosY(int y) {
+        return y + getChunkWorldPosY();
+    }
+
+    @Override
+    public int getBlockWorldPosZ(int z) {
+        return z + getChunkWorldPosZ();
+    }
+
 }

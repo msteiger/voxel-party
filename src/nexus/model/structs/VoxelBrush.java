@@ -20,6 +20,7 @@ package nexus.model.structs;
 import nexus.model.raster.AbstractBrush;
 import nexus.model.renderable.Air;
 import nexus.model.renderable.Solid;
+import org.terasology.world.chunks.Chunk;
 
 import com.google.common.base.Function;
 
@@ -41,24 +42,29 @@ public class VoxelBrush extends AbstractBrush
 	
 
 	@Override
-	public boolean isAir(Chunk chunk, int x, int y, int z) {
-		return chunk.blocks[x][z][y] == Air.INSTANCE;
-	}
-	
-	@Override
-	public void setBlock(Chunk chunk, int x, int y, int z, String type) {
+	public boolean isAir(Chunk chunk2, int x, int y, int z) {
+		nexus.model.structs.Chunk chunk = (nexus.model.structs.Chunk) chunk2;
         int wx = chunk.x * chunk.getChunkSizeX();
         int wz = chunk.z * chunk.getChunkSizeZ();
 
+        return chunk.blocks[x - wx][z - wz][y] == Air.INSTANCE;
+	}
+	
+	@Override
+	public void setBlock(Chunk chunk2, int x, int y, int z, String type) {
+		nexus.model.structs.Chunk chunk = (nexus.model.structs.Chunk) chunk2;
+        int wx = chunk.x * chunk.getChunkSizeX();
+        int wz = chunk.z * chunk.getChunkSizeZ();
+        
         Color color = blockType.apply(type);
         
         Block block;
         if (color == null) {
         	block = Air.INSTANCE;
         } else {
-        	block = new Solid(new Vector3(wx + x, y, wz + z), 1.0f, color);
+        	block = new Solid(new Vector3(x, y, z), 1.0f, color);
         }
         
-        chunk.blocks[x][z][y] = block;
+        chunk.blocks[x  - wx][z - wz][y] = block;
     }
 }

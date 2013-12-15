@@ -189,7 +189,7 @@ public class CityTerrainGenerator {
 	{
         Rectangle rc = blg.getLayout();
         
-        int baseHeight = blg.getBaseHeight() + 1;	// start 1 block above terrain
+        int baseHeight = blg.getBaseHeight();
         int wallHeight = blg.getWallHeight();
 
         brush.clearAbove(chunk, rc, baseHeight);
