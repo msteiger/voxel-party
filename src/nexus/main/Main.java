@@ -23,7 +23,7 @@ public class Main {
 	public static final int HEIGHT = 900;
 	public static final String WINDOW_TITLE = "Cities";
 	public static final int INIT_RENDER_DISTANCE = 6;
-	public static final Vector3 INIT_CAMERA_POSITION = new Vector3(0.0f, 16.0f, 0.0f);
+	public static final Vector3 INIT_CAMERA_POSITION = new Vector3(216.42438f, 38.29342f, -83.772194f);
 	public static final float INIT_SENSITIVITY = 0.3f;
 	public static final boolean CAMERA_INVERT = true;
 
@@ -48,7 +48,7 @@ public class Main {
 		}	
 
 		// start the nexus.mvc framework
-		Model world = new Model(new Camera(INIT_CAMERA_POSITION, 0.0f, 0.0f, INIT_SENSITIVITY, CAMERA_INVERT));
+		Model world = new Model(new Camera(INIT_CAMERA_POSITION, -0.405f, -1.88f, INIT_SENSITIVITY, CAMERA_INVERT));
 		View view = new View(world, INIT_RENDER_DISTANCE);
 		@SuppressWarnings("unused")
 		Controller controller = new Controller(world);

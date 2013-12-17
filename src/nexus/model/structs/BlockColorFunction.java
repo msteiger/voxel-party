@@ -19,7 +19,7 @@ package nexus.model.structs;
 
 import java.util.Map;
 
-import org.terasology.world.generator.city.BlockTypes;
+import org.terasology.cities.BlockTypes;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;

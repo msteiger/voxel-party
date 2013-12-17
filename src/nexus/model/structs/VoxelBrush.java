@@ -17,10 +17,11 @@
 
 package nexus.model.structs;
 
-import nexus.model.raster.AbstractBrush;
 import nexus.model.renderable.Air;
 import nexus.model.renderable.Solid;
-import org.terasology.world.chunks.Chunk;
+
+import org.terasology.cities.raster.ChunkBrush;
+import org.terasology.cities.terrain.HeightMap;
 
 import com.google.common.base.Function;
 
@@ -28,22 +29,24 @@ import com.google.common.base.Function;
  * TODO Type description
  * @author Martin Steiger
  */
-public class VoxelBrush extends AbstractBrush
+public class VoxelBrush extends ChunkBrush
 {
 	private final Function<String, Color> blockType;
-
+	private nexus.model.structs.Chunk chunk;
 	/**
 	 * @param blockType
 	 */
-	public VoxelBrush(Function<String, Color> blockType)
+	public VoxelBrush(nexus.model.structs.Chunk chunk, HeightMap heightMap, Function<String, Color> blockType)
 	{
+		super(chunk, heightMap, null);
+		
+		this.chunk = chunk;
 		this.blockType = blockType;
 	}
 	
 
 	@Override
-	public boolean isAir(Chunk chunk2, int x, int y, int z) {
-		nexus.model.structs.Chunk chunk = (nexus.model.structs.Chunk) chunk2;
+	public boolean isAir(int x, int y, int z) {
         int wx = chunk.x * chunk.getChunkSizeX();
         int wz = chunk.z * chunk.getChunkSizeZ();
 
@@ -51,8 +54,7 @@ public class VoxelBrush extends AbstractBrush
 	}
 	
 	@Override
-	public void setBlock(Chunk chunk2, int x, int y, int z, String type) {
-		nexus.model.structs.Chunk chunk = (nexus.model.structs.Chunk) chunk2;
+	public void setBlock(int x, int y, int z, String type) {
         int wx = chunk.x * chunk.getChunkSizeX();
         int wz = chunk.z * chunk.getChunkSizeZ();
         
