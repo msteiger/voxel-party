@@ -143,6 +143,9 @@ public class CityTerrainGenerator {
 	private void setBlock(Chunk chunk, int x, int y, int z, Color color) {
         int wx = chunk.x * chunk.getChunkSizeX();
         int wz = chunk.z * chunk.getChunkSizeZ();
+        
+        if (y >= Chunk.HEIGHT)
+        	return;
 
         Block block;
         if (color == null) {

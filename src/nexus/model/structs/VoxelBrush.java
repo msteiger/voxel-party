@@ -49,6 +49,9 @@ public class VoxelBrush extends ChunkBrush
         int wx = chunk.x * chunk.getChunkSizeX();
         int wz = chunk.z * chunk.getChunkSizeZ();
         
+        if (y >= Chunk.HEIGHT)
+        	return;
+        
         Color color = blockType.apply(type);
         
         Block block;
