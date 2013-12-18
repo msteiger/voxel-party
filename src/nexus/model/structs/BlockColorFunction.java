@@ -43,6 +43,12 @@ final class BlockColorFunction implements Function<String, Color> {
         map.put(BlockTypes.BUILDING_WALL, new Color(0.7f, 0.7f, 0.7f));
         map.put(BlockTypes.BUILDING_FLOOR, new Color(0.3f, 0.2f, 0.2f));
         map.put(BlockTypes.ROOF_FLAT, new Color(0.8f, 0.2f, 0.2f));
+        map.put(BlockTypes.BUILDING_FOUNDATION, new Color(0.4f, 0.4f, 0.4f));
+        map.put(BlockTypes.ROOF_HIP, new Color(0.6f, 0.2f, 0.2f));
+        map.put(BlockTypes.ROOF_SADDLE, new Color(0.6f, 0.2f, 0.2f));
+        map.put(BlockTypes.ROOF_DOME, new Color(0.6f, 0.6f, 0.5f));
+        map.put(BlockTypes.ROOF_GABLE, new Color(0.5f, 0.3f, 0.3f));
+        
     }
 
     /**

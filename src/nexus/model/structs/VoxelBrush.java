@@ -38,19 +38,10 @@ public class VoxelBrush extends ChunkBrush
 	 */
 	public VoxelBrush(nexus.model.structs.Chunk chunk, HeightMap heightMap, Function<String, Color> blockType)
 	{
-		super(chunk, heightMap, null);
+		super(chunk, null);
 		
 		this.chunk = chunk;
 		this.blockType = blockType;
-	}
-	
-
-	@Override
-	public boolean isAir(int x, int y, int z) {
-        int wx = chunk.x * chunk.getChunkSizeX();
-        int wz = chunk.z * chunk.getChunkSizeZ();
-
-        return chunk.blocks[x - wx][z - wz][y] == Air.INSTANCE;
 	}
 	
 	@Override
