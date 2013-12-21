@@ -62,6 +62,11 @@ final class BlockColorFunction implements Function<String, Color> {
     @Override
     public Color apply(String input) {
 
+    	if (!map.containsKey(input)) {
+    		System.out.println("BlockColorFunction does not know " + input);
+    		return new Color(0.5f, 0.5f, 0.5f);
+    	}
+    	
     	Color block = map.get(input);
 
         return block;
